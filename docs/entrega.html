@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brief Ejecutivo-Tecnico</title>
+    <style>
+      :root {
+        --bg: #f5f1e8;
+        --paper: #fffdf8;
+        --ink: #1f2933;
+        --muted: #52606d;
+        --line: #d9d3c6;
+        --accent: #8f3b2f;
+        --accent-soft: #f2dfd4;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        background: linear-gradient(180deg, #efe8da 0%, #f8f5ee 100%);
+        color: var(--ink);
+      }
+
+      .page {
+        max-width: 960px;
+        margin: 24px auto;
+        padding: 40px 48px 56px;
+        background: var(--paper);
+        border: 1px solid var(--line);
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0 0 12px;
+        line-height: 1.2;
+      }
+
+      h1 {
+        font-size: 34px;
+        color: var(--accent);
+      }
+
+      h2 {
+        margin-top: 28px;
+        padding-top: 14px;
+        border-top: 2px solid var(--accent-soft);
+        font-size: 24px;
+      }
+
+      h3 {
+        margin-top: 18px;
+        font-size: 18px;
+      }
+
+      p,
+      li,
+      td,
+      th {
+        font-size: 14px;
+        line-height: 1.55;
+      }
+
+      .meta {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin: 20px 0 26px;
+      }
+
+      .card {
+        padding: 14px 16px;
+        border: 1px solid var(--line);
+        background: #fffaf3;
+      }
+
+      .lead {
+        font-size: 16px;
+      }
+
+      .tag {
+        display: inline-block;
+        padding: 4px 10px;
+        margin-bottom: 12px;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0 18px;
+      }
+
+      th,
+      td {
+        padding: 10px 12px;
+        border: 1px solid var(--line);
+        vertical-align: top;
+      }
+
+      th {
+        background: #fbf6ed;
+        text-align: left;
+      }
+
+      code {
+        padding: 1px 4px;
+        background: #f3eee5;
+        border-radius: 4px;
+        font-family: "Menlo", "Consolas", monospace;
+        font-size: 12px;
+      }
+
+      pre {
+        white-space: pre-wrap;
+      }
+
+      ul,
+      ol {
+        padding-left: 20px;
+      }
+
+      .footer {
+        margin-top: 28px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      @media print {
+        body {
+          background: white;
+        }
+
+        .page {
+          margin: 0;
+          max-width: none;
+          border: 0;
+        }
+      }
+    </style>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({ startOnLoad: true, theme: "neutral" });
+    </script>
+  </head>
+  <body>
+    <main class="page">
+      <div class="tag">Entrega del curso</div>
+      <h1>Brief Ejecutivo-Tecnico + Demo Docker</h1>
+      <p class="lead">
+        Caso aplicado: <strong>e-commerce omnicanal</strong>. Esta entrega
+        transforma el mapa del curso en un documento de decision de TI y lo
+        valida con una mini demo <code>event-driven</code> ejecutable en Docker
+        Compose.
+      </p>
+
+      <section class="meta">
+        <div class="card">
+          <strong>Video en Google Drive</strong><br />
+          PENDIENTE_DE_SUBIR_VIDEO
+        </div>
+        <div class="card">
+          <strong>GitHub publico</strong><br />
+          https://github.com/AugustoReyes21/brief-ejecutivo-tecnico-demo-docker
+        </div>
+      </section>
+
+      <h2>A1) Arquitectura aplicada al caso</h2>
+      <p>
+        El <code>ERP</code> funciona como <code>System of Record</code> para
+        pedido, inventario, facturacion y conciliacion operativa. Los sistemas
+        satelite se dividen entre front office, back office y especializados.
+        El flujo a BI nace de eventos, datos maestros y trazas operativas.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Componente</th>
+            <th>Aplicacion al caso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>System of Record</td>
+            <td>ERP</td>
+          </tr>
+          <tr>
+            <td>Satelites Front Office</td>
+            <td>Tienda web, CRM, marketplace connector</td>
+          </tr>
+          <tr>
+            <td>Satelites Back Office</td>
+            <td>WMS, pasarela de pagos, mesa de ayuda</td>
+          </tr>
+          <tr>
+            <td>Especializados</td>
+            <td>Motor promocional y analitica digital</td>
+          </tr>
+          <tr>
+            <td>Flujo hacia BI</td>
+            <td>ERP + web + CRM hacia Data Warehouse y dashboards</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <pre class="mermaid">
+flowchart LR
+    subgraph FO["Front Office"]
+        WEB["Tienda web"]
+        CRM["CRM / Atencion"]
+        MKT["Marketplace connector"]
+    end
+
+    subgraph INTEG["Integracion"]
+        BUS["Event Bus / Redis"]
+    end
+
+    subgraph CORE["Nucleo"]
+        ERP["ERP (System of Record)"]
+    end
+
+    subgraph BO["Back Office y Especializados"]
+        WMS["WMS / Logistica"]
+        PAY["Pasarela de pagos"]
+        HELP["Mesa de ayuda"]
+        PROMO["Motor promocional"]
+    end
+
+    subgraph BI["Datos y Analitica"]
+        DWH["Data Warehouse / BI"]
+        DASH["Dashboards ejecutivos"]
+    end
+
+    CLIENTE["Cliente"] --> WEB
+    WEB --> PAY
+    WEB --> BUS
+    MKT --> BUS
+    BUS --> ERP
+    ERP --> WMS
+    ERP --> HELP
+    CRM --> ERP
+    PROMO --> WEB
+    ERP --> DWH
+    WEB --> DWH
+    CRM --> DWH
+    DWH --> DASH
+      </pre>
+
+      <h2>A2) Gobierno de TI (COBIT - minimo viable)</h2>
+      <p>
+        Esta propuesta es una <strong>adaptacion inferida</strong> desde el
+        enfoque oficial de COBIT: se usa el marco para estructurar decisiones,
+        responsables y politicas, sin reproducir contenido propietario de
+        ISACA.
+      </p>
+
+      <h3>Roles y responsabilidades</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Rol</th>
+            <th>Responsabilidad principal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Direccion / Gerencia</td>
+            <td>Prioridades, presupuesto y apetito de riesgo</td>
+          </tr>
+          <tr>
+            <td>Lider de TI</td>
+            <td>Arquitectura, roadmap y entrega tecnologica</td>
+          </tr>
+          <tr>
+            <td>Seguridad</td>
+            <td>Controles, accesos, monitoreo e incidentes</td>
+          </tr>
+          <tr>
+            <td>Dueno de proceso</td>
+            <td>Reglas operativas y KPIs del flujo comercial</td>
+          </tr>
+          <tr>
+            <td>Finanzas / Compliance</td>
+            <td>Conciliacion, evidencia y relacion con proveedores</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Decisiones gobernadas</h3>
+      <ol>
+        <li>Fuente de verdad de cliente, producto, pedido e inventario.</li>
+        <li>Criterios de cambio y despliegue a produccion.</li>
+        <li>Altas, bajas y privilegios de acceso.</li>
+        <li>Backups, retencion y prueba de restauracion.</li>
+        <li>Seleccion y evaluacion de proveedores/SaaS.</li>
+        <li>Versionado y monitoreo de integraciones.</li>
+      </ol>
+
+      <h3>Politicas minimas</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Politica</th>
+            <th>Minimo viable</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Accesos e identidades</td>
+            <td>MFA para administradores y RBAC por funcion</td>
+          </tr>
+          <tr>
+            <td>Cambios y despliegues</td>
+            <td>Ticket, evidencia de prueba y aprobacion</td>
+          </tr>
+          <tr>
+            <td>Backups</td>
+            <td>Respaldo diario y prueba trimestral de restauracion</td>
+          </tr>
+          <tr>
+            <td>Incidentes</td>
+            <td>Severidad, escalamiento y postmortem breve</td>
+          </tr>
+          <tr>
+            <td>Proveedores/SaaS</td>
+            <td>Revision de seguridad, SLA y plan de salida</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>A3) Riesgo y seguridad (NIST CSF 2.0)</h2>
+      <p>
+        A fecha <strong>1 de marzo de 2026</strong>, el marco vigente es
+        <code>NIST CSF 2.0</code>, con las funciones
+        <code>Govern, Identify, Protect, Detect, Respond, Recover</code>.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Funcion</th>
+            <th>Perfil actual</th>
+            <th>Perfil objetivo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Govern</td>
+            <td>Responsables difusos</td>
+            <td>Roles, politicas y revisiones definidas</td>
+          </tr>
+          <tr>
+            <td>Identify</td>
+            <td>Inventario parcial</td>
+            <td>Catalogo completo de activos y flujos</td>
+          </tr>
+          <tr>
+            <td>Protect</td>
+            <td>Controles basicos</td>
+            <td>MFA, RBAC y secretos gestionados</td>
+          </tr>
+          <tr>
+            <td>Detect</td>
+            <td>Logs dispersos</td>
+            <td>Alertas y monitoreo centralizado</td>
+          </tr>
+          <tr>
+            <td>Respond</td>
+            <td>Escalamiento informal</td>
+            <td>Runbook y responsables claros</td>
+          </tr>
+          <tr>
+            <td>Recover</td>
+            <td>Recuperacion artesanal</td>
+            <td>Backups probados con RTO/RPO definidos</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Controles priorizados</h3>
+      <ol>
+        <li>MFA para cuentas administrativas.</li>
+        <li>RBAC y minimo privilegio.</li>
+        <li>Inventario de activos e integraciones.</li>
+        <li>Gestion segura de secretos.</li>
+        <li>Logging centralizado con alertas.</li>
+        <li>Backups con pruebas de restauracion.</li>
+      </ol>
+
+      <h3>Mini plan de respuesta a incidentes</h3>
+      <ol>
+        <li>
+          Detectar y clasificar: confirmar alcance e impacto sobre pedido,
+          inventario y datos.
+        </li>
+        <li>
+          Contener y responder: aislar servicio, revocar accesos y preservar
+          evidencia.
+        </li>
+        <li>
+          Recuperar y aprender: restaurar, validar integridad y actualizar
+          controles.
+        </li>
+      </ol>
+
+      <p>
+        Para incident response se usa la referencia actual
+        <code>NIST SP 800-61 Rev. 3</code>, publicada el
+        <strong>8 de abril de 2025</strong>.
+      </p>
+
+      <h2>A4) Metricas (DORA + operacion)</h2>
+      <p>
+        A fecha <strong>1 de marzo de 2026</strong>, DORA describe cinco
+        metricas oficiales. Para cumplir la rubrica del curso, esta entrega usa
+        dos metricas DORA y dos metricas operativas.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Metrica</th>
+            <th>Definicion</th>
+            <th>Por que importa</th>
+            <th>Medicion conceptual</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Deployment Frequency</td>
+            <td>Frecuencia de despliegues a produccion</td>
+            <td>Mide capacidad de cambio</td>
+            <td>Conteo semanal o mensual de releases productivos</td>
+          </tr>
+          <tr>
+            <td>Lead Time for Changes</td>
+            <td>Tiempo entre cambio aprobado y despliegue</td>
+            <td>Mide friccion del flujo de entrega</td>
+            <td>Diferencia entre merge y release</td>
+          </tr>
+          <tr>
+            <td>MTTR</td>
+            <td>Tiempo medio de restauracion</td>
+            <td>Mide resiliencia operacional</td>
+            <td>Promedio entre inicio y cierre del incidente</td>
+          </tr>
+          <tr>
+            <td>Pruebas de restauracion exitosas</td>
+            <td>Porcentaje de restauraciones completadas con exito</td>
+            <td>Valida continuidad real</td>
+            <td>Exitos / pruebas planificadas</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Demo practica con Docker Compose</h2>
+      <p>
+        La demo implementa el flujo <code>order_created</code>:
+        <code>storefront-service</code> publica un evento y
+        <code>erp-service</code> lo consume mediante Redis. El flujo se prueba
+        con:
+      </p>
+      <pre>
+docker compose up --build
+
+curl -X POST http://localhost:8000/orders \
+  -H "Content-Type: application/json" \
+  -d '{"customer_id":"CUST-100","channel":"web","items":[{"sku":"SKU-CHAIR-01","qty":2,"price":49.90}],"total":99.80}'
+
+curl http://localhost:8001/orders
+      </pre>
+
+      <pre class="mermaid">
+sequenceDiagram
+    participant U as Usuario
+    participant S as storefront-service
+    participant R as Redis
+    participant E as erp-service
+
+    U->>S: POST /orders
+    S->>R: publish(order_created)
+    R-->>E: order_created
+    E->>E: registra orden en ERP
+    U->>E: GET /orders
+    E-->>U: orden consumida
+      </pre>
+
+      <h2>Referencias oficiales</h2>
+      <ul>
+        <li>ISACA COBIT: https://www.isaca.org/resources/cobit</li>
+        <li>NIST CSF 2.0: https://www.nist.gov/cyberframework</li>
+        <li>NIST CSF 2.0 PDF: https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf</li>
+        <li>NIST SP 800-61 Rev. 3: https://csrc.nist.gov/pubs/sp/800/61/r3/final</li>
+        <li>DORA metrics: https://dora.dev/guides/dora-metrics-four-keys/</li>
+        <li>Google Cloud Four Keys: https://cloud.google.com/blog/products/devops-sre/using-the-four-keys-to-measure-your-devops-performance</li>
+        <li>Mermaid: https://mermaid.js.org/</li>
+        <li>GitHub Mermaid docs: https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams</li>
+      </ul>
+
+      <p class="footer">
+        La documentacion principal del repositorio esta en
+        <code>docs/brief.md</code>. Antes de entregar, reemplaza los dos
+        placeholders de links.
+      </p>
+    </main>
+  </body>
+</html>

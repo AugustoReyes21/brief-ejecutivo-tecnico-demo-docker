@@ -1,0 +1,36 @@
+services:
+  redis:
+    image: redis:7-alpine
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  storefront-service:
+    build:
+      context: ./services/storefront-service
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: "6379"
+      REDIS_CHANNEL: order-events
+      PORT: "8000"
+    depends_on:
+      redis:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+
+  erp-service:
+    build:
+      context: ./services/erp-service
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: "6379"
+      REDIS_CHANNEL: order-events
+      PORT: "8001"
+    depends_on:
+      redis:
+        condition: service_healthy
+    ports:
+      - "8001:8001"
