@@ -8,6 +8,7 @@ Este repositorio contiene una entrega completa para la tarea del curso:
 - `docs/brief-entrega.pdf`: PDF listo para entregar
 - `docs/entrega.html`: fuente HTML usada para generar el PDF
 - `docs/video-script.md`: guion corto para grabar el video
+- `scripts/build-demo-video.py`: generador de video local narrado
 - `docker-compose.yml`: demo practica event-driven
 - `docs/diagrams/`: diagramas Mermaid en archivos separados
 
@@ -30,7 +31,15 @@ Este repositorio contiene una entrega completa para la tarea del curso:
 │   └── diagrams
 │       ├── architecture.md
 │       └── event-flow.md
+├── artifacts
+│   └── video
+│       └── html
+│           ├── slide-01-title.html
+│           ├── slide-04-demo-request.html
+│           ├── slide-05-demo-result.html
+│           └── slide-06-summary.html
 ├── scripts
+│   ├── build-demo-video.py
 │   └── generate-pdf.sh
 └── services
     ├── erp-service
@@ -112,6 +121,22 @@ Si editas `docs/entrega.html` y quieres regenerarlo:
 
 ```bash
 ./scripts/generate-pdf.sh
+```
+
+## Video local
+
+Tambien se genero un video local narrado con evidencia de la demo en:
+
+```text
+artifacts/video/brief-demo.mp4
+```
+
+Para regenerarlo en esta maquina:
+
+```bash
+python3 -m venv .venv-video
+./.venv-video/bin/pip install imageio-ffmpeg
+./.venv-video/bin/python scripts/build-demo-video.py
 ```
 
 ## Referencias oficiales usadas en la documentacion

@@ -1,2 +1,7 @@
 .DS_Store
 __pycache__/
+.venv-video/
+artifacts/video/audio/
+artifacts/video/screenshots/
+artifacts/video/*.mp4
+artifacts/video/segments.txt
