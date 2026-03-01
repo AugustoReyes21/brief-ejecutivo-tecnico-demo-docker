@@ -2,20 +2,11 @@
 
 Caso aplicado: `e-commerce omnicanal`
 
-Este repositorio contiene una entrega completa para la tarea del curso:
+Este repositorio contiene la documentacion principal y una demo practica event-driven con Docker Compose.
 
 - `docs/brief.md`: brief ejecutivo-tecnico en Markdown
-- `docs/brief-entrega.pdf`: PDF listo para entregar
-- `docs/entrega.html`: fuente HTML usada para generar el PDF
-- `docs/video-script.md`: guion corto para grabar el video
-- `scripts/build-demo-video.py`: generador de video local narrado
 - `docker-compose.yml`: demo practica event-driven
 - `docs/diagrams/`: diagramas Mermaid en archivos separados
-
-## Enlaces de entrega
-
-- Video en Google Drive: `PENDIENTE_DE_SUBIR_VIDEO`
-- Repositorio GitHub publico: `https://github.com/AugustoReyes21/brief-ejecutivo-tecnico-demo-docker`
 
 ## Estructura
 
@@ -24,23 +15,10 @@ Este repositorio contiene una entrega completa para la tarea del curso:
 ├── README.md
 ├── docker-compose.yml
 ├── docs
-│   ├── brief-entrega.pdf
 │   ├── brief.md
-│   ├── entrega.html
-│   ├── video-script.md
 │   └── diagrams
 │       ├── architecture.md
 │       └── event-flow.md
-├── artifacts
-│   └── video
-│       └── html
-│           ├── slide-01-title.html
-│           ├── slide-04-demo-request.html
-│           ├── slide-05-demo-result.html
-│           └── slide-06-summary.html
-├── scripts
-│   ├── build-demo-video.py
-│   └── generate-pdf.sh
 └── services
     ├── erp-service
     │   ├── Dockerfile
@@ -112,32 +90,6 @@ En el video deberias mostrar, en este orden:
 5. Los logs de publicacion y consumo.
 6. El `curl http://localhost:8001/orders`.
 7. Un resumen de 30-60 segundos sobre gobierno, riesgo y metricas.
-
-## PDF de entrega
-
-Ya existe un PDF generado en `docs/brief-entrega.pdf`.
-
-Si editas `docs/entrega.html` y quieres regenerarlo:
-
-```bash
-./scripts/generate-pdf.sh
-```
-
-## Video local
-
-Tambien se genero un video local narrado con evidencia de la demo en:
-
-```text
-artifacts/video/brief-demo.mp4
-```
-
-Para regenerarlo en esta maquina:
-
-```bash
-python3 -m venv .venv-video
-./.venv-video/bin/pip install imageio-ffmpeg
-./.venv-video/bin/python scripts/build-demo-video.py
-```
 
 ## Referencias oficiales usadas en la documentacion
 

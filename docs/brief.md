@@ -1,10 +1,8 @@
 # Brief Ejecutivo-Tecnico
 
-## Datos de entrega
+## Datos del caso
 
 - Organizacion elegida: `e-commerce omnicanal`
-- Video en Google Drive: `PENDIENTE_DE_SUBIR_VIDEO`
-- Repositorio GitHub publico: `https://github.com/AugustoReyes21/brief-ejecutivo-tecnico-demo-docker`
 - Demo practica: `docker compose up --build`
 
 ## Resumen ejecutivo
