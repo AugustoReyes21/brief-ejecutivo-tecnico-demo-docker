@@ -79,7 +79,7 @@ flowchart LR
 
 ### Diagrama complementario del flujo demo
 
-Ver tambien [architecture.md](/Users/adriar/Downloads/Brief%20Ejecutivo/docs/diagrams/architecture.md) y [event-flow.md](/Users/adriar/Downloads/Brief%20Ejecutivo/docs/diagrams/event-flow.md).
+[architecture.md](/Users/adriar/Downloads/Brief%20Ejecutivo/docs/diagrams/architecture.md) y [event-flow.md](/Users/adriar/Downloads/Brief%20Ejecutivo/docs/diagrams/event-flow.md).
 
 ## A2) Gobierno de TI (COBIT - minimo viable)
 
